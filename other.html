@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>title</title>
+  <meta name="author" content="name">
+  <meta name="description" content="description here">
+  <meta name="keywords" content="keywords,here">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  <style>
+  /* #loading {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.7;
+   background-color: #fff;
+   z-index: 99;
+   text-align: center;
+}
+
+  #loading-image {
+    position: absolute;
+    top: 100px;
+    left: 240px;
+    z-index: 100;
+
+    } */
+
+.center-form {
+  padding: 10px 0px 10px 80px;
+  align-items: center;
+}
+
+.tabs-colorful-icons{
+    font: bold 13px sans-serif;
+
+    margin: 0 auto 0;
+    max-width: 480px;
+    text-align: center;
+}
+
+/* The tabs */
+
+.tabs-colorful-icons ul{
+    list-style: none;
+    text-align: left;
+
+    margin: 0;
+    padding: 0;
+}
+
+.tabs-colorful-icons ul li{
+    display: inline-block;
+    margin-bottom: -1px;
+}
+
+.tabs-colorful-icons ul li a{
+    display: block;
+    text-decoration: none;
+
+    font-size: 16px;
+
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+
+    padding: 15px 18px 10px;
+}
+
+.tabs-colorful-icons ul li i{
+    padding-right: 8px;
+}
+
+.tabs-colorful-icons .first-tab{
+    color:  #7494b7;
+}
+
+.tabs-colorful-icons .second-tab{
+    color:  #9274b7;
+}
+
+.tabs-colorful-icons .third-tab{
+    color:  #dbb43d;
+}
+
+.tabs-colorful-icons .tab-active {
+    border-color: #dddddd;
+    background-color: #ffffff;
+}
+
+/* The content */
+
+.tabs-colorful-icons .tabs-content-placeholder{
+    overflow: hidden;
+    border: 1px solid #dddddd;
+    font-weight: normal;
+    background-color: #fff;
+
+    padding: 25px 32px 30px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div{
+    display: none;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div.tab-content-active{
+    display: block;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div p{
+    color: #565a5c;
+    line-height: 1.45;
+    text-align: left;
+
+    margin: 5px 0 20px;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div img{
+    max-width: 100%;
+}
+
+
+@media (max-width: 500px) {
+
+    .tabs-colorful-icons ul li a{
+        font-size: 13px;
+        padding: 12px 15px;
+    }
+
+    .tabs-colorful-icons ul li i{
+        display: none;
+    }
+
+}
+
+  </style>
+  <title>NBA</title>
+  </head>
+  <body>
+
+
+
+
+      <!-- <nav class="nav">
+        <a class="navbar-brand" href="#">
+          <i class="fab fa-affiliatetheme"></i>
+        </a>
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </nav> -->
+
+      <!-- <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Navbar</a>
+        <form class="form-inline">
+          <input type="text" id="field1"  placeholder="Symbol" class="form-control">
+          <button onclick="return loadData()"  class="btn btn-primary">Search</button>
+        </form>
+      </nav> -->
+
+
+      <div class="tabs-colorful-icons">
+
+          <ul>
+              <li>
+                  <a class="first-tab tab-active" data-index="0" href="#"><i class="fa fa-gift"></i>Summary</a>
+              </li>
+              <li>
+                  <a class="second-tab" data-index="1" href="#"><i class="fa fa-tachometer"></i>Graph</a>
+              </li>
+              <li>
+                  <a class="third-tab" data-index="2" href="#"><i class="fa fa-cogs"></i>History</a>
+              </li>
+          </ul>
+
+          <div class="tabs-content-placeholder">
+
+              <div class="tab-content-active">
+                  <h1 id="search"></h1>
+                  <!-- <div id="loading">
+                      <img id="loading-image" src="images/ajax-loader.gif" alt="Loading..." />
+                    </div> -->
+                  <!-- <p class="card-text" id="vol">volume: </p>
+                  <p class="card-text" id="open">open: </p>
+                  <p class="card-text" id="close">close: </p>
+                  <p class="card-text" id="high">high: </p>
+                  <p class="card-text" id="low">low: </p> -->
+
+
+                  <ul class="list-group">
+                    <li class="list-group-item" id="vol">Volume: </li>
+                    <li class="list-group-item list-group-item-info" id="open">Open: </li>
+                    <li class="list-group-item" id="close">Close: </li>
+                    <li class="list-group-item list-group-item-info" id="high">High: </li>
+                    <li class="list-group-item" id="low">Low: </li>
+                  </ul>
+              </div>
+
+              <div>
+                <canvas id="bar-chart" width="400" height="400"></canvas>
+              </div>
+
+              <div>
+                  <p>Lo3rem ipsum dolor ist amet, consectetur adipiscing elit. Suspendisse molestie volutpat consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra.</p>
+              </div>
+
+          </div>
+
+      </div>
+
+
+    <!-- <div class="card text-center">
+
+      <div class="card-header">
+        <h1 id="search"></h1>
+      </div> -->
+
+      <!-- <div class="card-body">
+        <canvas id="bar-chart" width="400" height="400"></canvas>
+        <p class="card-text" id="vol">volume: </p>
+        <p class="card-text" id="open">open: </p>
+        <p class="card-text" id="close">close: </p>
+        <p class="card-text" id="high">high: </p>
+        <p class="card-text" id="low">low: </p>
+      </div> -->
+
+      <div class="center-form" style="margin: auto;">
+        <form>
+          <div class="form-row">
+            <div class="col-7">
+              <input type="text" id="field1"  placeholder="Symbol" class="form-control"><br>
+              <button onclick="return loadData()"  class="btn btn-primary">Symbol</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+      <!-- <div class="card-footer">
+        updated today
+      </div>
+    </div> -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
